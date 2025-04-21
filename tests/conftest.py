@@ -3,10 +3,7 @@ import os
 import pytest
 from playwright.sync_api import sync_playwright, Page, Playwright
 
-@pytest.fixture(scope="session")
-def playwright():
-    with sync_playwright() as p:
-        yield p
+
 
 @pytest.fixture
 def chromium_page(playwright) -> Page:
