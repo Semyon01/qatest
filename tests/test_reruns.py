@@ -7,7 +7,7 @@ def test_reruns():
 
 
 
-PLATFORM = "Windows"
+PLATFORM = "Linux"
 
 @pytest.mark.flaky(reruns=3, reruns_delay=2, condition=PLATFORM == 'Windows')
 def test_reruns_with_condition():
