@@ -13,8 +13,8 @@ from pages.login_page import LoginPage
         ("  ", "password"),                  # Пустой email (два пробела) и невалидный password
     ],
 )
-def test_wrong_email_or_password_auth(login_page: LoginPage, email: str, password: str):
+def test_wrong_email_or_password_authorization(login_page: LoginPage, email: str, password: str):
     login_page.visit('https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/login')
-    login_page.fill_login_form(email=email,password=password)
-    login_page.click_login_button()
-    login_page.check_visibale_allert()
+    login_page.login_form.fill_login_form(email=email, password=password)
+    login_page.login_form.click_login_button()
+    login_page.login_form.check_visibale_allert()
