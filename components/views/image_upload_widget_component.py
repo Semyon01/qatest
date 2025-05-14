@@ -2,6 +2,11 @@ from playwright.sync_api import Page, expect
 
 from components.base_components import BaseComponent
 from components.views.empty_view_component import EmptyViewComponent
+from elements.button import Button
+from elements.file_input import FileInput
+from elements.icon import Icon
+from elements.image import Image
+from elements.text import Text
 
 
 class ImageUploadWidgetComponent(BaseComponent):
@@ -10,17 +15,17 @@ class ImageUploadWidgetComponent(BaseComponent):
 
         self.preview_empty_view = EmptyViewComponent(page, identifier)
 
-        self.preview_image = page.get_by_test_id(f'{identifier}-image-upload-widget-preview-image')
+        self.preview_image = Image(page,f'{identifier}-image-upload-widget-preview-image','image')
 
-        self.image_upload_info_icon = page.get_by_test_id(f'{identifier}-image-upload-widget-info-icon')
-        self.image_upload_info_title = page.get_by_test_id(f'{identifier}-image-upload-widget-info-title-text')
-        self.image_upload_info_description = page.get_by_test_id(
-            f'{identifier}-image-upload-widget-info-description-text'
+        self.image_upload_info_icon = Icon(page,f'{identifier}-image-upload-widget-info-icon','icon')
+        self.image_upload_info_title = Text(page,f'{identifier}-image-upload-widget-info-title-text','text')
+        self.image_upload_info_description = Text(page,
+            f'{identifier}-image-upload-widget-info-description-text','text'
         )
 
-        self.upload_button = page.get_by_test_id(f'{identifier}-image-upload-widget-upload-button')
-        self.remove_button = page.get_by_test_id(f'{identifier}-image-upload-widget-remove-button')
-        self.upload_input = page.get_by_test_id(f'{identifier}-image-upload-widget-input')
+        self.upload_button = Button(page,f'{identifier}-image-upload-widget-upload-button','upload_button')
+        self.remove_button = Button(page,f'{identifier}-image-upload-widget-remove-button','upload_button')
+        self.upload_input = FileInput(page,f'{identifier}-image-upload-widget-input','FileInput')
 
     # Проверяет отображение виджета в зависимости от наличия загруженного изображения
     def check_visible(self, is_image_uploaded: bool = False):
