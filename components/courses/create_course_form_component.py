@@ -1,15 +1,18 @@
 from playwright.sync_api import Page, expect
 from components.base_components import BaseComponent
+from elements.input import Input
+from elements.textarea import Textarea
+
 
 class CreateCourseFormComponent(BaseComponent):
     def __init__(self, page: Page,identifier: str):
         super().__init__(page)
 
-        self.title_input = page.get_by_test_id('create-course-form-title-input').locator('input')
-        self.estimated_time_input = page.get_by_test_id('create-course-form-estimated-time-input').locator('input')
-        self.description_textarea = page.get_by_test_id('create-course-form-description-input').locator('textarea')
-        self.max_score_input = page.get_by_test_id('create-course-form-max-score-input').locator('input')
-        self.min_score_input = page.get_by_test_id('create-course-form-min-score-input').locator('input')
+        self.title_input = Input(page, 'create-course-form-title-input','title_input')
+        self.estimated_time_input = Input(page,'create-course-form-estimated-time-input','estimated_time_input')
+        self.description_textarea = Textarea(page,'create-course-form-description-input','Textarea')
+        self.max_score_input = Input(page,'create-course-form-max-score-input','max_score_input')
+        self.min_score_input = Input(page,'create-course-form-min-score-input','min_score_input')
 
     def check_visible(self, title: str, estimated_time: str, description: str, max_score: str, min_score: str):
         expect(self.title_input).to_be_visible()

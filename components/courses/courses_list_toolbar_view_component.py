@@ -3,14 +3,16 @@ import re
 from playwright.sync_api import Page, expect
 
 from components.base_components import BaseComponent
+from elements.button import Button
+from elements.text import Text
 
 
 class CoursesListToolbarViewComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.title = page.get_by_test_id('courses-list-toolbar-title-text')
-        self.create_course_button = page.get_by_test_id('courses-list-toolbar-create-course-button')
+        self.title = Text(page,'courses-list-toolbar-title-text','title')
+        self.create_course_button = Button(page,'courses-list-toolbar-create-course-button', 'button')
 
     def check_visible(self):
         expect(self.title).to_be_visible()
